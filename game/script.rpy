@@ -54,7 +54,7 @@ label start:
             )
 
             #We ask ChatGPT to "complete" the conversation by adding a response
-            messages = chatgpt.completion(messages,apikey)
+            messages = chatgpt.completion(messages,api_key=apikey)
             #Here we only care about the response from the NPC
             response = messages[-1]["content"]
             #So we display just that
