@@ -33,3 +33,5 @@ Then add this basic hello world example in your script to see if it all worked :
             response = messages[-1]["content"]
             e("[response]")
 ```
+
+Note that you should NEVER publish your OpenAI API key anywhere, neither in a publiushed game, nor in github, I'm working on a solution to help you "hide" your API key with a server. Bear with me until it's done.
