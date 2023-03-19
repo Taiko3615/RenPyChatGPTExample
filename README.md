@@ -33,19 +33,23 @@ Then add this basic hello world example in your script to see if it all worked :
             response = messages[-1]["content"]
             e("[response]")
 ```
-#Import note about OpenAI API Keys !
+# Important note about OpenAI API Keys !
+
 While developing your game, it's ok to hardcode your OpenAI API key locally to do your tests.
 But.
 It's very important that you never actually publish your OpenAI API key anywhere. Neither inside your game assets or on your github repo (if it's a public repo).
+
 Because if anyone has your API Key, they can send hundreds of thousands of requests using your API key and bankrupt you.
+
 They can also release another game that uses your API key and the requests sent by your players will be billed to you.
+
 And nobody wants that, right ?
 
 So, how to still publish your game and allow your players to use your API key without seeing it ?
 
 The easiest way is for you to create a kind of "proxy" that you control and that filters what requests are ok and which requests are not OK, and this proxy will inject your API key in your requests.
 
-For example, you could make a list of "NPC prompts" that are in your game, those are allowed, but other requests aren't allowed.
+For example, you could make a list of "NPC prompts" that are in your game, those are allowed, but other unrelated requests aren't allowed.
 
 Here's a sample code for a very basic proxy.php file you could use, just create this "proxy.php" file on your_server.com so that the url of this file is http://your_server.com/proxy.php : 
 ```
@@ -125,6 +129,6 @@ if ($contains_authorised_npc) {
 
 Now in your game instead of calling : chatgpt.completion(messages,api_key=apikey), call chatgpt.completion(messages,proxy="http://your_server.com/proxy.php")
 
-And don't forget to modify your proxy.php file each time you add a new NPC.
+And don't forget to modify your proxy.php file each time you add a new NPC in your game.
 
 This is just a very simple proxy.php, you may want to consider adding some rate limitations or other securities.
