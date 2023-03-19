@@ -14,7 +14,7 @@ label start:
     python:
         #We get the API Key from the User. Because you should NEVER give your API key in any form with your game let alone share it on a public repository
         #How to distribute your game with an embbed API KEY ? I'll soon make a special server system to make it possible
-         apikey = renpy.input("What is your OPENAI API Key?", length=64)
+         apikey = renpy.input("What is your OPENAI API Key? (leave empty if you don't have any)", length=64)
 
     m "Oki let's go !"
 
@@ -53,11 +53,16 @@ label start:
                 {"role": "user", "content": user_input}
             )
 
-            #We ask ChatGPT to "complete" the conversation by adding a response
-            messages = chatgpt.completion(messages,api_key=apikey)
-
-            #If you use a proxy, use this instead :
-            #messages = chatgpt.completion(messages,proxy="http://your_server.com/proxy.php")
+            if apikey != '':
+                #We ask ChatGPT to "complete" the conversation by adding a response
+                #If you have an API key, let's use that
+                messages = chatgpt.completion(messages,api_key=apikey)
+            else :
+                #If you don't provide an API key, we'll use my proxy
+                #This proxy only allows a set of NPCs, and serves to "hide" my API key
+                #Check the README.md to know more about it
+                #Of course if you modify the NPC in any way, it won't work, you'll have to use your own API key instead.
+                messages = chatgpt.completion(messages,proxy="http://prima.wiki/proxy.php")
 
             #Here we only care about the response from the NPC
             response = messages[-1]["content"]
