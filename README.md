@@ -1,7 +1,9 @@
 # RenPyChatGPTExample
  Simple ChatGPT plugin for Ren'Py and simple example on how to use it
 
-How to use this plugin in your Ren'Py project ?
+For a fully fledged open source videogame based on this plugin, go here : https://github.com/Taiko3615/Danse-Macabre
+
+# How to use this plugin in your Ren'Py project ?
 
 Just copy paste the "python-packages" folder into your "game" folder.
 
